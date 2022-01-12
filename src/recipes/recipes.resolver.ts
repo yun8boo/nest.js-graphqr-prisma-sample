@@ -1,4 +1,6 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
+import { CreateRecipeInput } from './dto/createRecipe.dto';
+import { UpdateRecipeInput } from './dto/updateRecipe.dto';
 import { Recipe } from './models/recipe.model';
 import { RecipesService } from './recipes.service';
 
@@ -19,5 +21,25 @@ export class RecipesResolver {
   @Query((returns) => [Recipe])
   async recipes() {
     return this.recipesService.recipes({});
+  }
+
+  @Mutation((returns) => Recipe)
+  async createRecipe(
+    @Args('createRecipeInput') { title, description }: CreateRecipeInput,
+  ) {
+    return this.recipesService.createRecipe({
+      title,
+      description,
+    });
+  }
+
+  @Mutation((returns) => Recipe)
+  async updateRecipe(
+    @Args('updateRecipeInput') { id, title, description }: UpdateRecipeInput,
+  ) {
+    return this.recipesService.updateRecipe({
+      where: { id },
+      data: { title, description },
+    });
   }
 }
