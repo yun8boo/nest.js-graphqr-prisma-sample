@@ -1,9 +1,9 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateRecipeInput {
-  @Field((type) => Int)
-  id: number;
+  @Field((type) => String)
+  id: string;
 
   @Field({ nullable: true })
   title?: string;
