@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, HideField, ObjectType } from '@nestjs/graphql';
 
 @ObjectType({ description: 'user' })
 export class User {
@@ -8,7 +8,7 @@ export class User {
   @Field()
   email: string;
 
-  @Field({ nullable: true })
+  @HideField()
   password: string;
 
   @Field()

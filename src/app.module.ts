@@ -5,6 +5,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CurrentUserModule } from './current-user/current-user.module';
+import { PasswordService } from './password/password.service';
 
 @Module({
   imports: [
@@ -19,5 +20,6 @@ import { CurrentUserModule } from './current-user/current-user.module';
     UsersModule,
     CurrentUserModule,
   ],
+  providers: [PasswordService],
 })
 export class AppModule {}
