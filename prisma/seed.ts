@@ -12,17 +12,14 @@ async function main() {
       email: 'lisa@test.com',
       firstName: 'Lisa',
       lastName: 'Simpson',
-      password: 'hogehoge',
-      // password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+      password: '$2b$10$wzAo97pH6FrRJWgDrOUA3ef2zrjoVfK3PZ9gjBjSHH2u.69gDZryS', // secret42
     },
   });
   const user2 = await prisma.user.create({
     data: {
       email: 'bart@simpson.com',
       firstName: 'Bart',
-      lastName: 'Simpson',
-      password: '12345',
-      // password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+      password: '$2b$10$e1due1DbZ.hEP2WaMFHbG.uw11gHnN6J.1wyQf3hukYg0Gl8oQtVm', // secret42
     },
   });
 

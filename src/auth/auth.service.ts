@@ -37,13 +37,13 @@ export class AuthService {
       password: hashPassword,
     });
     return {
-      access_token: this.jwtService.sign(user.id),
+      access_token: this.jwtService.sign(user),
     };
   }
 
   async login(user: Omit<User, 'password'>) {
     return {
-      access_token: this.jwtService.sign(user.id),
+      access_token: this.jwtService.sign(user),
     };
   }
 

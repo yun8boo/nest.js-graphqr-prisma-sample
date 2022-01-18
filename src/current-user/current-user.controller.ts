@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class CurrentUserController {
   @UseGuards(JwtAuthGuard)
   @Get()
-  getProfile(@Request() req) {
-    return req.user;
+  getProfile(@Request() { user: { iat, exp, ...other } }) {
+    return other;
   }
 }
