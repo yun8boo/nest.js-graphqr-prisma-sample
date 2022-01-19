@@ -16,7 +16,9 @@ export class UsersService {
   }
   async createUser(userCreateInput: Prisma.UserCreateInput) {
     try {
-      return this.prismService.user.create({ data: userCreateInput });
+      return this.prismService.user.create({
+        data: userCreateInput,
+      });
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&

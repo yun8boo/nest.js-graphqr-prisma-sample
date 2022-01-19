@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CurrentUserModule } from './current-user/current-user.module';
 import { PasswordService } from './password/password.service';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { PasswordService } from './password/password.service';
     AuthModule,
     UsersModule,
     CurrentUserModule,
+    PostsModule,
   ],
   providers: [PasswordService],
 })

@@ -17,11 +17,25 @@ type Mutation {
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
 }
 
+"""post"""
+type Post {
+  content: String!
+  createdAt: DateTime!
+  id: String!
+  published: Boolean!
+  title: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 type Query {
   currentUser: User!
+  post(id: String!): Post!
   recipe(id: String!): Recipe!
   recipes: [Recipe!]!
   test: String!
+  user(id: String!): User!
 }
 
 """recipe"""
@@ -46,5 +60,6 @@ type User {
   firstName: String
   id: String!
   lastName: String
+  posts: [Post!]
   updatedAt: DateTime!
 }

@@ -17,6 +17,7 @@ export class AuthService {
     password: string,
   ): Promise<Omit<User, 'password'> | null> {
     const user = await this.usersService.findOne({ email });
+    user;
     if (user) {
       const isValidatePassword = await this.passwordService.validatePassword(
         password,
@@ -32,12 +33,12 @@ export class AuthService {
 
   async signup(data: SignupInput) {
     const hashPassword = await this.passwordService.hashPassword(data.password);
-    const user = await this.usersService.createUser({
+    const { password, ...result } = await this.usersService.createUser({
       ...data,
       password: hashPassword,
     });
     return {
-      access_token: this.jwtService.sign(user),
+      access_token: this.jwtService.sign(result),
     };
   }
 
