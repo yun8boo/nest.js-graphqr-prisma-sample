@@ -14,7 +14,34 @@ export class PostsService {
     return this.prismaService.post.findMany({ where: postsWhereManyInput });
   }
 
+  async findPostUser(postsWhereManyInput: Prisma.PostWhereUniqueInput) {
+    return this.prismaService.post
+      .findUnique({ where: postsWhereManyInput })
+      .user();
+  }
+
   async createPost(postCreateInput: Prisma.PostCreateInput) {
-    return this.prismaService.post.create({ data: postCreateInput });
+    return this.prismaService.post.create({
+      data: postCreateInput,
+    });
+  }
+
+  async updatePost({
+    id,
+    postUpdateInput,
+  }: {
+    id: string;
+    postUpdateInput: Prisma.PostUpdateInput;
+  }) {
+    return this.prismaService.post.update({
+      where: { id },
+      data: postUpdateInput,
+    });
+  }
+
+  async deletePost(id: string) {
+    return this.prismaService.post.delete({
+      where: { id },
+    });
   }
 }

@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePostInput {
+  content: String!
+  title: String!
+}
+
 input CreateRecipeInput {
   description: String
   title: String!
@@ -12,8 +17,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input DeletePostInput {
+  id: String!
+}
+
 type Mutation {
+  createPost(createPostInput: CreatePostInput!): Post!
   createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
+  deletePost(deletePostInput: DeletePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
   updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
 }
 
@@ -25,7 +37,7 @@ type Post {
   published: Boolean!
   title: String!
   updatedAt: DateTime!
-  user: User!
+  user: User
   userId: String!
 }
 
@@ -45,6 +57,12 @@ type Recipe {
   id: ID!
   title: String!
   updatedAt: DateTime!
+}
+
+input UpdatePostInput {
+  content: String
+  id: String!
+  title: String
 }
 
 input UpdateRecipeInput {

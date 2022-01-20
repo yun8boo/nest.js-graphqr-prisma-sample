@@ -18,8 +18,8 @@ export class Post {
   @Field()
   userId: string;
 
-  @Field((type) => User)
-  user: User;
+  @Field((type) => User, { nullable: true })
+  user?: User;
 
   @Field()
   createdAt: Date;
