@@ -10,6 +10,35 @@ export class PostsService {
     return this.prismaService.post.findUnique({ where: postWhereUniqueInput });
   }
 
+  async findAll({
+    searchValue,
+    skip,
+    take,
+    orderBy,
+  }: {
+    searchValue?: string;
+    skip?: number;
+    take?: number;
+    orderBy?: Prisma.Enumerable<Prisma.PostOrderByWithRelationInput>;
+  }) {
+    const or: Prisma.Enumerable<Prisma.PostWhereInput> = searchValue
+      ? {
+          OR: [
+            {
+              title: { contains: searchValue },
+            },
+            { content: { contains: searchValue } },
+          ],
+        }
+      : {};
+    return this.prismaService.post.findMany({
+      where: { OR: or },
+      skip,
+      take,
+      orderBy,
+    });
+  }
+
   async findUserPosts(postsWhereManyInput: Prisma.PostWhereInput) {
     return this.prismaService.post.findMany({ where: postsWhereManyInput });
   }

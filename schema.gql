@@ -41,9 +41,14 @@ type Post {
   userId: String!
 }
 
+input PostsOrderByInput {
+  updatedAt: SortType
+}
+
 type Query {
   currentUser: User!
   post(id: String!): Post!
+  posts(orderBy: PostsOrderByInput!, searchValue: String, skip: Float, take: Float): [Post!]!
   recipe(id: String!): Recipe!
   recipes: [Recipe!]!
   test: String!
@@ -57,6 +62,12 @@ type Recipe {
   id: ID!
   title: String!
   updatedAt: DateTime!
+}
+
+"""Properties by which post connections can be ordered."""
+enum SortType {
+  asc
+  desc
 }
 
 input UpdatePostInput {

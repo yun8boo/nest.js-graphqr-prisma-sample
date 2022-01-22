@@ -12,6 +12,7 @@ import { CurrentUser } from 'src/current-user/current-user.decorator';
 import { User } from 'src/users/models/user.model';
 import { CreatePostInput } from './dto/createPost.dto';
 import { DeletePostInput } from './dto/deletePost.dto';
+import { PostsOrderByInput } from './dto/postsOrderBy.dto';
 import { UpdatePostInput } from './dto/updatePost.dto';
 import { Post } from './models/post.model';
 import { PostsService } from './posts.service';
@@ -23,6 +24,16 @@ export class PostsResolver {
   @Query(() => Post)
   async post(@Args('id') id: string) {
     return this.postsService.findOne({ id });
+  }
+
+  @Query(() => [Post])
+  async posts(
+    @Args('searchValue', { nullable: true }) searchValue?: string,
+    @Args('skip', { nullable: true }) skip?: number,
+    @Args('take', { nullable: true }) take?: number,
+    @Args('orderBy') orderBy?: PostsOrderByInput,
+  ) {
+    return this.postsService.findAll({ searchValue, skip, take, orderBy });
   }
 
   @ResolveField()
