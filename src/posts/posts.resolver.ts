@@ -7,6 +7,7 @@ import {
   Resolver,
   Root,
 } from '@nestjs/graphql';
+import e from 'express';
 import { GqlAuthGuard } from 'src/auth/jwt-gql-auth.guard';
 import { CurrentUser } from 'src/current-user/current-user.decorator';
 import { User } from 'src/users/models/user.model';
@@ -31,7 +32,7 @@ export class PostsResolver {
     @Args('searchValue', { nullable: true }) searchValue?: string,
     @Args('skip', { nullable: true }) skip?: number,
     @Args('take', { nullable: true }) take?: number,
-    @Args('orderBy') orderBy?: PostsOrderByInput,
+    @Args('orderBy', { nullable: true }) orderBy?: PostsOrderByInput,
   ) {
     return this.postsService.findAll({ searchValue, skip, take, orderBy });
   }

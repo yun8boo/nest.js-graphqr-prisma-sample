@@ -48,7 +48,7 @@ input PostsOrderByInput {
 type Query {
   currentUser: User!
   post(id: String!): Post!
-  posts(orderBy: PostsOrderByInput!, searchValue: String, skip: Float, take: Float): [Post!]!
+  posts(orderBy: PostsOrderByInput, searchValue: String, skip: Float, take: Float): [Post!]!
   recipe(id: String!): Recipe!
   recipes: [Recipe!]!
   test: String!

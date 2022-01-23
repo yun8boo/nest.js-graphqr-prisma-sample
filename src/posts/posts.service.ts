@@ -32,7 +32,7 @@ export class PostsService {
         }
       : {};
     return this.prismaService.post.findMany({
-      where: { OR: or },
+      where: { ...or },
       skip,
       take,
       orderBy,
